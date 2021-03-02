@@ -1,4 +1,5 @@
 'use strict';
+
 function getResult(a,b,c){
     let d = b*b - 4 * a * c;
 
@@ -20,11 +21,38 @@ function getResult(a,b,c){
 }
 
 function getAverageMark(marks){
-    // код для задачи №2 писать здесь
-    // return averageMark;
+    let count = marks.length;
+    let sum = 0;
+
+    if (count === 0 ) {
+        return 0;
+    } else if (count > 5) {
+        let newMarks = marks.slice(0, 5);
+        let newCount = newMarks.length;
+        for (let i = 0; i < newCount; i++) {
+            sum += newMarks[i];
+        }
+        console.log('Количество оценок больше 5');
+        return sum / newCount;
+    } else {
+        for (let i = 0; i < count; i++) {
+            sum += marks[i];
+        }
+        return sum / count;
+    }
 }
 
 function askDrink(name,dateOfBirthday){
-    // код для задачи №3 писать здесь
+    let yearBirthday = dateOfBirthday.getFullYear();
+    let currentDate = new Date();
+    let currentYear = currentDate.getFullYear();
+    let userYear = currentYear - yearBirthday;
+
+     if (userYear >= 18) {
+         return 'Не желаете ли олд-фэшн, ' + name + '?';
+     } else {
+         return 'Сожалею, ' + name + ', но я не могу вам продать алкоголь. Могу предложить вам замечательный клюквенный компот!';
+     }
+
     // return result;
 }
