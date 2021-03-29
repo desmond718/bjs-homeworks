@@ -114,5 +114,6 @@ function getDecodedValue (secret) {
 
 let secretData = {
     aaa: 0,
-    bbb: 0
+    bbb: 0,
+    ccc: 0
 }
