@@ -27,7 +27,6 @@ function checkBirthday(birthday) {
     let birthdayUser = +(new Date(birthday));
     let diff = now - birthdayUser;
     let age = (diff - (Math.trunc(diff / 31536000000 ) / 4 * (31622400000 - 31536000000))) / 31536000000;
-    console.log(age);
     if (age > 18) {
         return true;
     }
