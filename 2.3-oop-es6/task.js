@@ -9,17 +9,17 @@ class PrintEditionItem {
     fix() {
         return  (this.state = this.state * 1.5);
     }
-    set fixer (state) {
+    set state (state) {
         if (+state < 0) {
-            return this.state = 0;
+            return this._state = 0;
         }
         if (+state > 100) {
-            return this.state = 100;
+            return this._state = 100;
         }
-        return this.state = state;
+        return this._state = +state;
     }
-    get fixer() {
-        return this.state;
+    get state () {
+        return this._state;
     }
 }
 
