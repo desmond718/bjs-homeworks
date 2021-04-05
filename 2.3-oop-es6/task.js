@@ -17,7 +17,7 @@ class PrintEditionItem {
         if (state > 100) {
             return this._state = 100;
         }
-        return this._state = state;
+        return this._state = state;0
     }
     get state () {
         return this._state;
@@ -86,7 +86,7 @@ class Library {
     giveBookByName(bookName) {
         for (let i = 0; i < this.books.length; i++) {
             if (this.books[i].name === bookName) {
-               return this.books.splice(i,1);
+               return this.books.splice(i,1)[0];
             }
         }
         return null;
@@ -95,21 +95,17 @@ class Library {
 }
 //Part 3
 class Subjects {
-    constructor(grade, subject) {
+    constructor(subject) {
         this.subject = subject;
-        this.grade = grade;
         this._grade = [];
     }
 
-    set grade (grade) {
-
-        if (grade > 5) {
-            return `Вы пытаетесь поставить оценку ${grade} по предмету ${this.subject}. Допускается только числа от 1 до 5`;
+    setGrade (grade) {
+        if (grade >= 1 && grade <= 5) {
+            return this._grade.push(grade);
         }
-        if (grade < 1) {
-            return `Вы пытаетесь поставить оценку ${grade} по предмету ${this.subject}. Допускается только числа от 1 до 5`;
-        }
-        return this._grade = grade;
+        console.log(`Вы пытаетесь поставить оценку ${grade} по предмету ${this.subject}. Допускается только числа от 1 до 5`);
+        return this._grade.length;
     }
 }
 
@@ -117,11 +113,18 @@ class Subjects {
 class StudentLog {
     constructor(name) {
         this.name = name;
+        this.subjects = {};
     }
+
     getName() {
         return this.name;
     }
+
     addGrade(grade, subject) {
-        this.subjects = new Subjects(grade, subject);
+        if (!this.subjects[subject]) {
+            this.subjects[subject] = new Subjects(subject);
+        }
+
+        return this.subjects[subject].setGrade(grade);
     }
 }
