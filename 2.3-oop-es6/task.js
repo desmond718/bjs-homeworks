@@ -143,7 +143,16 @@ class StudentLog {
         return sum / arrGrade.length;
     }
 
-    // getTotalAverage() {
-    //     for (this.subjects[])
-    // }
+    getTotalAverage() {
+        let totalSum = 0;
+        let totalSubject = 0;
+        for (let subject in this.subjects) {
+            totalSum += this.getAverageBySubject(String(subject));
+            totalSubject++;
+        }
+        if (totalSubject === 0) {
+            return 0;
+        }
+        return totalSum / totalSubject;
+    }
 }
