@@ -36,14 +36,15 @@ class Triangle {
     }
 }
 
-
 function getTriangle (a,b,c) {
+    let triangle;
     try {
-        new Triangle(a,b,c);
+        triangle = new Triangle(a,b,c);
     } catch (error) {
-        console.log('tyt');
-        console.log(error);
-        return error;
+        return {
+            getArea() { return 'Ошибка! Треугольник не существует' },
+            getPerimeter() { return 'Ошибка! Треугольник не существует' },
+        };
     }
-    return new Triangle(a,b,c);
+    return triangle;
 }
