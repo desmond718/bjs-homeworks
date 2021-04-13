@@ -29,3 +29,15 @@ function getTotalDamage () {
     })
     return totalDamage;
 }
+
+function getValuestCountToSumValues (arrNumber, sumNumber) {
+    let sum = 0;
+    let newArr = [];
+    arrNumber.forEach((item) => {
+        if (sumNumber >= sum) {
+            sum += item;
+            newArr.push(item);
+        }
+    })
+    return newArr.length;
+}
