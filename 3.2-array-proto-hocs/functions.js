@@ -29,3 +29,5 @@ function getTotalDamage () {
     })
     return totalDamage;
 }
+
+function
