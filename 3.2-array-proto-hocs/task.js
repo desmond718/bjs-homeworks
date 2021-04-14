@@ -24,12 +24,17 @@ function memorize (fn, limit) {
     const memory = [];
 
     function wrapper(...args) {
+
         const sameQuery = memory.find((query) => {
             return compareArrays(args, query.args)
         });
 
         if (sameQuery) {
             return sameQuery.result;
+        }
+
+        if ((memory.length - 1) > limit) {
+            memory.shift();
         }
 
         const result = fn(...args);
