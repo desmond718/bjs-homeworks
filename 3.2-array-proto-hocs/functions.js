@@ -1,11 +1,4 @@
 'use strict';
-console.clear();
-const weapons = [new Knife(), new Staff(), new Axe(), new StormStaff(), new LongBow(), new Bow()];
-
-function getNames() {
-    
-}
-'use strict';
 const weapons = [new Knife(), new Staff(), new Axe(), new StormStaff(), new LongBow(), new Bow()];
 
 function getNames () {
@@ -41,30 +34,10 @@ function getValuestCountToSumValues (arrNumber, sumNumber) {
     let sum = 0;
     let newArr = [];
     arrNumber.forEach((item) => {
-        if (sumNumber >= sum) {
+        if (sumNumber > sum) {
             sum += item;
             newArr.push(item);
         }
     })
     return newArr.length;
 }
-
-// //part 2
-// function sleep(milliseconds) {
-//     let e = new Date().getTime() + milliseconds;
-//     while (new Date().getTime() <= e) {}
-// }
-//
-// function sum(...args) {
-//     // Замедление на половину секунды.
-//     sleep(100); // Можно использовать другое значение замедления.
-//     return args.reduce((sum, arg) => {
-//         return sum += +arg;
-//     }, 0);
-// }
-//
-// function compareArrays (arr1, arr2) {
-//     console.log(arr1.every());
-//     const isSameArr = arr1.every(arr2);
-//     return isSameArr;
-// }

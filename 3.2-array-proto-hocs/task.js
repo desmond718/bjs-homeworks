@@ -13,12 +13,29 @@ function sum(...args) {
     }, 0);
 }
 
-// function compareArrays (arr1, arr2) {
-//     let ater = 0;
-//     arr1.every(item => ater = item);
-//     arr2.every(item2 => console.log(item2) === console.log(ater));
-// }
-function memorize (fn, limit) {
+function compareArrays (arr1, arr2) {
+    if (arr1.length !== arr2.length) {
+        return false;
+    }
+    return arr1.every((v,i) => v === arr2[i]);
+}
 
+function memorize (fn, limit) {
+    const memory = [];
+
+    function wrapper(...args) {
+        const sameQuery = memory.find((query) => {
+            return compareArrays(args, query.args)
+        });
+
+        if (sameQuery) {
+            return sameQuery.result;
+        }
+
+        const result = fn(...args);
+        memory.push({args: args, result: result});
+        return result;
+    }
+    return wrapper;
 }
 
