@@ -1,21 +1,21 @@
 'use strict';
  class AlarmClock {
-          constructor(id) {
+          constructor() {
               this.alarmCollection = [];
-              this.timerId = id;
+              this.timerId = null;
      }
 
      addClock(time, callback, clockId = null) {
          if (clockId === null)  throw new Error('Id not defined');
-         if (clockId === this.timerId) return console.error('Id already exist');
-
-         return this.alarmCollection.push({id: clockId, time: time, callback: callback});
+         if (this.alarmCollection.find(item => item.id === clockId)) return console.error('Id already exist');
+         this.alarmCollection.push({id: clockId, time: time, callback: callback});
      }
 
      removeClock(clockId) {
-          let removeId = this.alarmCollection.findIndex(item => item.id === clockId);
-          if (removeId) {
-              delete this.alarmCollection[removeId];
+          let removeIndex = this.alarmCollection.findIndex(item => item.id === clockId);
+          console.log(removeIndex);
+          if (removeIndex || removeIndex === 0) {
+              this.alarmCollection.splice(removeIndex, 1);
               return true;
           }
           return false;
@@ -28,9 +28,30 @@
 
      start() {
           const checkClock = (alarm) => {
-              if (alarm === this.getCurrentFormattedTime()) return callback;
+              if (alarm.time === this.getCurrentFormattedTime()) return alarm.callback;
           }
-
+          if (!this.timerId) {
+              this.timerId = setInterval(() => this.alarmCollection.forEach(item => checkClock(item)), 60000);
+          }
      }
+
+     stop() {
+          if (this.timerId) {
+              clearInterval(this.timerId);
+              this.timerId = null;
+          }
+     }
+
+     printAlarms () {
+          this.alarmCollection.forEach((item) => {
+              console.log(item.id, item.time)
+          })
+     }
+
+     clearAlarms() {
+          this.stop();
+          this.alarmCollection = [];
+     }
+
 
  }
